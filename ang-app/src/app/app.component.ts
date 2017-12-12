@@ -11,10 +11,21 @@ export class AppComponent {
     fieldSeparator: ',',
     quoteStrings: '"',
     decimalseparator: '.',
-    showLabels: true,
-    showTitle: true,
+    headers: [
+      "Title",
+      "Labels",
+      "Task",
+      "Task Status"
+    ],
+    showTitle: false,
     useBom: false
   };
+  // private head = [
+  //   "Title",
+  //   "Labels",
+  //   "Task",
+  //   "Task Status"
+  // ];
   private data = [
     {
       name: "Test 1",
@@ -39,6 +50,6 @@ export class AppComponent {
     },
   ];
   download() {
-    new Angular2Csv(data, 'My Report', this.options);
+    new Angular2Csv(this.data, 'My Report', this.options);
   }
 }
