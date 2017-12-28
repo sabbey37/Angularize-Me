@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,49 +7,17 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private options = {
-    fieldSeparator: ',',
-    quoteStrings: '"',
-    decimalseparator: '.',
-    headers: [
-      "Title",
-      "Labels",
-      "Task",
-      "Task Status"
-    ],
-    showTitle: false,
-    useBom: false
-  };
-  // private head = [
-  //   "Title",
-  //   "Labels",
-  //   "Task",
-  //   "Task Status"
-  // ];
-  private data = [
-    {
-      name: "Test 1",
-      age: 13,
-      average: 8.2,
-      approved: true,
-      description: "using 'Content here, content here' "
-    },
-    {
-      name: 'Test 2',
-      age: 11,
-      average: 8.2,
-      approved: true,
-      description: "using 'Content here, content here' "
-    },
-    {
-      name: 'Test 4',
-      age: 10,
-      average: 8.2,
-      approved: true,
-      description: "using 'Content here, content here' "
-    },
-  ];
-  download() {
-    new Angular2Csv(this.data, 'My Report', this.options);
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 }
