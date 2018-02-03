@@ -1,2 +1,2 @@
 # Angularize-Me
-Practicing Angular with Angular CLI.
+Practicing Angular. Apps created with Angular CLI.
