@@ -1,2 +1,0 @@
-# Angularize-Me
-Practicing Angular.
