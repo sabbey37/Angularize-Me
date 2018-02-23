@@ -1,2 +1,1 @@
 # Angularize-Me
-Learning Angular
