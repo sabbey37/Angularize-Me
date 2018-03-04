@@ -25,6 +25,7 @@ import { DialogDataComponent } from './dialog-data/dialog-data.component';
     MatFormFieldModule,
     MatDialogModule
   ],
+  entryComponents: [ DialogExampleComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
