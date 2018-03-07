@@ -8,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class DialogDataComponent implements OnInit {
 
   animal: string;
-  name: string;
+  color: string;
 
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '250px',
-      data: { name: this.name, animal: this.animal }
+      data: { color: this.color, animal: this.animal }
     });
 
     dialogRef.afterClosed().subscribe(result => {
