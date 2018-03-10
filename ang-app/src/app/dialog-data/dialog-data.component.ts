@@ -14,7 +14,6 @@ export class DialogDataComponent implements OnInit {
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
       data: { color: this.color, animal: this.animal }
     });
 
