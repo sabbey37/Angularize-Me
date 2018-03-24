@@ -9,15 +9,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
 import { DialogExampleComponent } from './dialog-example/dialog-example.component';
 import { DialogDataComponent } from './dialog-data/dialog-data.component';
-import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogExampleComponent,
-    DialogDataComponent,
-    SnackBarComponent
+    DialogDataComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +24,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
     ReactiveFormsModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatDialogModule,
-    MatSnackBarModule
+    MatDialogModule
   ],
   entryComponents: [ DialogExampleComponent ],
   providers: [],
