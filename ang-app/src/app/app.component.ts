@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import { PhoneNumberUtil, PhoneNumber, PhoneNumberFormat, AsYouTypeFormatter } from 'google-libphonenumber';
 import { parse, format, AsYouType } from 'libphonenumber-js';
@@ -14,6 +14,17 @@ export class AppComponent implements OnInit {
     public regionValue = 'US';
     public phoneNumber = {value: ''};
 
+    @Output()
+    phoneChange = new EventEmitter<string>();
+
+    @Input()
+    get phone(){
+        return this.phoneNumber.value;
+    }
+    set phone(val) {
+        this.phoneNumber.value = val;
+        this.phoneChange.emit(this.phoneNumber.value);
+    }
     public countries = [
         {
             display: "Mozambique (+258)",
