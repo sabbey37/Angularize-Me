@@ -75,8 +75,11 @@ export class AppComponent implements OnInit {
         try {
             console.log(this.regionValue);
             // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
-            console.log(this.formatter.inputDigit(phoneControl.value));
-            this.formatter.clear;
+            if(phoneControl.value !== null) {
+                console.log(this.formatter.inputDigit(phoneControl.value.slice(-1)));        
+            }
+        
+            //this.formatter.clear();
             const phoneUtil = PhoneNumberUtil.getInstance();
             const pNumber = phoneUtil.parseAndKeepRawInput(phoneControl.value, this.regionValue);
             const isValidNumber = phoneUtil.isValidNumber(pNumber);
