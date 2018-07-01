@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import { PhoneNumberUtil, PhoneNumber } from 'google-libphonenumber';
+import { PhoneNumberUtil, PhoneNumber, PhoneNumberFormat, AsYouTypeFormatter } from 'google-libphonenumber';
+import { parse, format, AsYouType } from 'libphonenumber-js';
 import { PhoneValidator } from "./Validators";
 
 @Component({
@@ -11,6 +12,7 @@ import { PhoneValidator } from "./Validators";
 export class AppComponent implements OnInit {
     private phoneForm;
     private regionValue = 'US';
+    public phoneNumber;
 
     public countries = [
         {
@@ -29,7 +31,7 @@ export class AppComponent implements OnInit {
     constructor(@Inject(FormBuilder) fb: FormBuilder) {
         this.phoneForm = new FormGroup({
             country: new FormControl('US', Validators.required),
-            phone: new FormControl('', Validators.compose([
+            phone: new FormControl(this.phoneNumber, Validators.compose([
             Validators.required,
             this.validCountryPhone.bind(this)
             ]))
@@ -43,6 +45,21 @@ export class AppComponent implements OnInit {
         this.regionValue = event.target.value;
         this.validCountryPhone(this.phoneForm.controls['phone']);
     }
+
+    numberFormatter(number) {
+        var asYouType = new AsYouType('US').input(this.phoneNumber)
+    }
+
+    getExampleNumber(region) {
+        try {
+            var phoneUtil = PhoneNumberUtil.getInstance();
+            //var numberObj = phoneUtil.getExampleNumber(region);
+            // var format = PhoneNumberFormat.NATIONAL;
+            // return phoneUtil.format(numberObj, format);
+        } catch (e) {
+            return "";
+        }
+    };
 
     validCountryPhone = (phoneControl: FormControl) => {
 
