@@ -10,21 +10,20 @@ import { PhoneValidator } from "./Validators";
 })
 export class AppComponent implements OnInit {
     private phoneForm;
+    private regionValue = '';
+
     public countries = [
         {
             display: "Mozambique (+258)",
-            value: "MZ",
-            selected: false
+            value: "MZ"
         },
         {
             display: "United States (+1)",
-            value: "US",
-            selected: false
+            value: "US"
         },
         {
             display: "Zimbabwe (+263)",
-            value: "ZW",
-            selected: true
+            value: "ZW"
         }
         ];
     constructor(@Inject(FormBuilder) fb: FormBuilder) {
@@ -38,4 +37,8 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {}
+
+    updateRegion(event: any) {
+        console.log(event);
+    }
 }
