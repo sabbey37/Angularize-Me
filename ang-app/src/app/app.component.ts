@@ -12,20 +12,24 @@ import { PhoneValidator } from "./Validators";
 export class AppComponent implements OnInit {
     private phoneForm;
     public regionValue = 'US';
-    public phoneNumber = {value: ''};
-
-    @Output()
-    phoneChange = new EventEmitter<string>();
-
-    @Input()
-    get phone(){
-        return this.phoneNumber.value;
-    }
     
-    set phone(val) {
-        this.phoneNumber.value = val;
-        this.phoneChange.emit(this.phoneNumber.value);
-    }
+    @Input()
+    phoneNumber: string;
+
+    handlerText: string;
+
+    // @Output()
+    // phoneChange = new EventEmitter<string>();
+
+    // @Input()
+    // get phone(){
+    //     return this.phoneNumber.value;
+    // }
+    
+    // set phone(val) {
+    //     this.phoneNumber.value = val;
+    //     this.phoneChange.emit(this.phoneNumber.value);
+    // }
     public countries = [
         {
             display: "Mozambique (+258)",
@@ -43,7 +47,7 @@ export class AppComponent implements OnInit {
     constructor(@Inject(FormBuilder) fb: FormBuilder) {
         this.phoneForm = new FormGroup({
             country: new FormControl('US', Validators.required),
-            phone: new FormControl(this.phoneNumber.value, Validators.compose([
+            phone: new FormControl('', Validators.compose([
             Validators.required,
             this.validCountryPhone.bind(this)
             ]))
@@ -51,6 +55,11 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {}
+
+    handleModel(model: NgModel) {
+        console.log('Model: ', model);
+        this.handlerText = model.value;
+    }
 
     updateRegion(event: any) {
         console.log(event.target.value);
@@ -93,7 +102,7 @@ export class AppComponent implements OnInit {
                     formatted = formatter.inputDigit(digit);   
                 });    
                 console.log(formatted);
-                this.phoneNumber.value = formatted;
+                this.phoneNumber = formatted;
             }
         
             //this.formatter.clear();

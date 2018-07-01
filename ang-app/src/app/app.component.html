@@ -8,7 +8,11 @@
                 {{country.display}}
             </option>
         </select>
-        <input formControlName="phone" placeholder="Enter phone number">
+        <input formControlName="phone" 
+        [(ngModel)]="phoneNumber" placeholder="Enter phone number"
+        #modelHook="ngModel"
+        (ngModelChange)="handleModel(<em>modelHook</em>)"
+        >
         <button>Submit</button>
     </form>
 </div>
