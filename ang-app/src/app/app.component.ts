@@ -10,7 +10,7 @@ import { PhoneValidator } from "./Validators";
 })
 export class AppComponent implements OnInit {
     private phoneForm;
-    private regionValue = '';
+    private regionValue = 'US';
 
     public countries = [
         {
@@ -41,6 +41,7 @@ export class AppComponent implements OnInit {
     updateRegion(event: any) {
         console.log(event.target.value);
         this.regionValue = event.target.value;
+        this.validCountryPhone(this.phoneForm.controls['phone']);
     }
 
     validCountryPhone = (phoneControl: FormControl) => {
@@ -60,6 +61,7 @@ export class AppComponent implements OnInit {
           const isValidNumber = phoneUtil.isValidNumber(pNumber);
 
           if (isValidNumber) {
+              console.log('valid!');
             return undefined;
           }
         } catch (e) {
@@ -68,7 +70,7 @@ export class AppComponent implements OnInit {
             validCountryPhone: true
           };
         }
-
+        console.log('not valid');
         return {
           validCountryPhone: true
         };

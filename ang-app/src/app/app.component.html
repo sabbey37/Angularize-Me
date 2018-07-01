@@ -1,7 +1,10 @@
 <div>
     <form [formGroup]="phoneForm">
         <select (change)="updateRegion($event)">
-            <option *ngFor="let country of countries" [value]="country.value">
+            <option 
+                *ngFor="let country of countries" 
+                selected="country.value == 'US'"
+                [value]="country.value">
                 {{country.display}}
             </option>
         </select>
