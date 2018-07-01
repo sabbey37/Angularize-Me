@@ -10,6 +10,23 @@ import { PhoneValidator } from "./Validators";
 })
 export class AppComponent implements OnInit {
     private phoneForm;
+    public countries = [
+        {
+            display: "Mozambique (+258)",
+            value: "MZ",
+            selected: false
+        },
+        {
+            display: "United States (+1)",
+            value: "US",
+            selected: false
+        },
+        {
+            display: "Zimbabwe (+263)",
+            value: "ZW",
+            selected: false
+        }
+        ];
     constructor(@Inject(FormBuilder) fb: FormBuilder) {
         this.phoneForm = new FormGroup({
             country: new FormControl('US', Validators.required),

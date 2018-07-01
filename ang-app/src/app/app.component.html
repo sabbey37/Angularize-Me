@@ -1,6 +1,10 @@
 <div>
     <form [formGroup]="phoneForm">
-        <input formControlName="country" placeholder="First">
+        <select>
+            <option *ngFor="let country of countries" [value]="country.value">
+                {{country.display}}
+            </option>
+        </select>
         <input formControlName="phone" placeholder="Last">
         <button>Submit</button>
     </form>
