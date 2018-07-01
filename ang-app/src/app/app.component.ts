@@ -12,7 +12,7 @@ import { PhoneValidator } from "./Validators";
 export class AppComponent implements OnInit {
     private phoneForm;
     public regionValue = 'US';
-    public phoneNumber;
+    public phoneNumber = {value: ''};
 
     public countries = [
         {
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     constructor(@Inject(FormBuilder) fb: FormBuilder) {
         this.phoneForm = new FormGroup({
             country: new FormControl('US', Validators.required),
-            phone: new FormControl(this.phoneNumber, Validators.compose([
+            phone: new FormControl(this.phoneNumber.value, Validators.compose([
             Validators.required,
             this.validCountryPhone.bind(this)
             ]))
@@ -46,9 +46,9 @@ export class AppComponent implements OnInit {
         this.validCountryPhone(this.phoneForm.controls['phone']);
     }
 
-    numberFormatter(number) {
-        var asYouType = new AsYouType('US').input(this.phoneNumber)
-    }
+    // numberFormatter(number) {
+    //     var asYouType = new AsYouType('US').input(this.phoneNumber)
+    // }
 
     getExampleNumber(region) {
         try {
@@ -76,12 +76,12 @@ export class AppComponent implements OnInit {
             var formatted;
             console.log(this.regionValue);
             // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
-            if(phoneControl.value !== null) {
+            if(phoneControl.value !== null && phoneControl !== undefined) {
                 phoneControl.value.split('').forEach(digit => {
                     formatted = formatter.inputDigit(digit);   
                 });    
                 console.log(formatted);
-                this.phoneNumber = formatted;
+                this.phoneNumber.value = formatted;
             }
         
             //this.formatter.clear();
