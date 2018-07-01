@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
             country: new FormControl('US', Validators.required),
             phone: new FormControl('', Validators.compose([
             Validators.required,
-            PhoneValidator.validCountryPhone
+            this.validCountryPhone.bind(this)
             ]))
         });
     }
@@ -39,6 +39,41 @@ export class AppComponent implements OnInit {
     ngOnInit() {}
 
     updateRegion(event: any) {
-        console.log(event);
+        console.log(event.target.value);
+        this.regionValue = event.target.value;
     }
+
+    validCountryPhone = (phoneControl: FormControl) => {
+
+    //   if (!subscribe) {
+    //     subscribe = true;
+    //     countryControl.valueChanges.subscribe(() => {
+    //       phoneControl.updateValueAndValidity();
+    //     });
+    //   }
+
+      if (phoneControl.value !== '') {
+        try {
+            console.log(this.regionValue);
+          const phoneUtil = PhoneNumberUtil.getInstance();
+          const pNumber = phoneUtil.parseAndKeepRawInput(phoneControl.value, this.regionValue);
+          const isValidNumber = phoneUtil.isValidNumber(pNumber);
+
+          if (isValidNumber) {
+            return undefined;
+          }
+        } catch (e) {
+          console.log(e);
+          return {
+            validCountryPhone: true
+          };
+        }
+
+        return {
+          validCountryPhone: true
+        };
+      } else {
+        return undefined;
+      }
+    };
 }
