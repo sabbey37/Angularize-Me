@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
             country: new FormControl('US', Validators.required),
             phone: new FormControl('', Validators.compose([
             Validators.required,
-            PhoneValidator.validCountryPhone(country)
+            PhoneValidator.validCountryPhone
             ]))
         });
     }
