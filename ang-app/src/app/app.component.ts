@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
         {
             display: "Zimbabwe (+263)",
             value: "ZW",
-            selected: false
+            selected: true
         }
         ];
     constructor(@Inject(FormBuilder) fb: FormBuilder) {

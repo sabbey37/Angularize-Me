@@ -7,15 +7,11 @@ import { MatStepperModule, MatFormFieldModule } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
-import { DialogExampleComponent } from './dialog-example/dialog-example.component';
-import { DialogDataComponent } from './dialog-data/dialog-data.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DialogExampleComponent,
-    DialogDataComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +22,6 @@ import { DialogDataComponent } from './dialog-data/dialog-data.component';
     MatFormFieldModule,
     MatDialogModule
   ],
-  entryComponents: [ DialogExampleComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
