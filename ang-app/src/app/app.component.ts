@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
     updateRegion(event: any) {
         console.log(event.target.value);
         this.regionValue = event.target.value;
+        this.formatter = new AsYouTypeFormatter(event.target.value);
         this.validCountryPhone(this.phoneForm.controls['phone']);
     }
 
