@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     get phone(){
         return this.phoneNumber.value;
     }
+    
     set phone(val) {
         this.phoneNumber.value = val;
         this.phoneChange.emit(this.phoneNumber.value);
