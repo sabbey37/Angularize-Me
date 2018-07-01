@@ -11,8 +11,9 @@ import { PhoneValidator } from "./Validators";
 })
 export class AppComponent implements OnInit {
     private phoneForm;
-    private regionValue = 'US';
+    public regionValue = 'US';
     public phoneNumber;
+    formatter = new AsYouTypeFormatter(this.regionValue);
 
     public countries = [
         {
@@ -73,9 +74,12 @@ export class AppComponent implements OnInit {
       if (phoneControl.value !== '') {
         try {
             console.log(this.regionValue);
-          const phoneUtil = PhoneNumberUtil.getInstance();
-          const pNumber = phoneUtil.parseAndKeepRawInput(phoneControl.value, this.regionValue);
-          const isValidNumber = phoneUtil.isValidNumber(pNumber);
+            // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
+            console.log(this.formatter.inputDigit(phoneControl.value));
+            this.formatter.clear;
+            const phoneUtil = PhoneNumberUtil.getInstance();
+            const pNumber = phoneUtil.parseAndKeepRawInput(phoneControl.value, this.regionValue);
+            const isValidNumber = phoneUtil.isValidNumber(pNumber);
 
           if (isValidNumber) {
               console.log('valid!');
