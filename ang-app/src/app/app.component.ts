@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
     private phoneForm;
     public regionValue = 'US';
     public phoneNumber;
-    formatter = new AsYouTypeFormatter(this.regionValue);
 
     public countries = [
         {
@@ -44,7 +43,6 @@ export class AppComponent implements OnInit {
     updateRegion(event: any) {
         console.log(event.target.value);
         this.regionValue = event.target.value;
-        this.formatter = new AsYouTypeFormatter(event.target.value);
         this.validCountryPhone(this.phoneForm.controls['phone']);
     }
 
@@ -74,10 +72,16 @@ export class AppComponent implements OnInit {
 
       if (phoneControl.value !== '') {
         try {
+            var formatter = new AsYouTypeFormatter(this.regionValue);
+            var formatted;
             console.log(this.regionValue);
             // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
             if(phoneControl.value !== null) {
-                console.log(this.formatter.inputDigit(phoneControl.value.slice(-1)));        
+                phoneControl.value.split('').forEach(digit => {
+                    formatted = formatter.inputDigit(digit);   
+                });    
+                console.log(formatted);
+                this.phoneNumber = formatted;
             }
         
             //this.formatter.clear();
