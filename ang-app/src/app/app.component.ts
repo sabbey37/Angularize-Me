@@ -12,11 +12,6 @@ import { PhoneValidator } from "./Validators";
 export class AppComponent implements OnInit {
     private phoneForm;
     public regionValue = 'US';
-    
-    @Input()
-    phoneNumber: string;
-
-    handlerText: string;
 
     // @Output()
     // phoneChange = new EventEmitter<string>();
@@ -55,11 +50,6 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {}
-
-    handleModel(model: NgModel) {
-        console.log('Model: ', model);
-        this.handlerText = model.value;
-    }
 
     updateRegion(event: any) {
         console.log(event.target.value);
@@ -102,7 +92,7 @@ export class AppComponent implements OnInit {
                     formatted = formatter.inputDigit(digit);   
                 });    
                 console.log(formatted);
-                this.phoneNumber = formatted;
+                this.phoneForm.controls['phone'].setValue(formatted);
             }
         
             //this.formatter.clear();
