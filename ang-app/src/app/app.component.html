@@ -8,7 +8,9 @@
                 {{country.display}}
             </option>
         </select>
-        <input formControlName="phone" [(phone)]='yellow' placeholder="Enter phone number">
+        <input formControlName="phone" 
+        [(ngModel)]='phoneNumber' 
+        placeholder="Enter phone number">
         <button>Submit</button>
     </form>
 </div>
