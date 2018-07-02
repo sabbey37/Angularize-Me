@@ -7,11 +7,13 @@ import { MatStepperModule, MatFormFieldModule } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
+import { PhoneFormat } from "./phone.directive";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PhoneFormat
   ],
   imports: [
     BrowserModule,

@@ -50,22 +50,22 @@ export class AppComponent implements OnInit {
     }
     
     ngOnInit() {
-        this.phoneForm.controls['phone'].patchValue('yellow');
-        const phoneCtrl = this.phoneForm.controls['phone'];
-        const changes$ = phoneCtrl.valueChanges;
-        changes$.subscribe(change => {
-            var formatter = new AsYouTypeFormatter(this.regionValue);
-            var formatted;
-            console.log(this.regionValue);
-            // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
-            if(change !== null && change !== undefined) {
-                change.split('').forEach(digit => {
-                    formatted = formatter.inputDigit(digit);   
-                });    
-                console.log(formatted);
-                // this.phoneForm.controls['phone'].patchValue(change);
-            }
-        });
+        // this.phoneForm.controls['phone'].patchValue('yellow');
+        // const phoneCtrl = this.phoneForm.controls['phone'];
+        // const changes$ = phoneCtrl.valueChanges;
+        // changes$.subscribe(change => {
+        //     var formatter = new AsYouTypeFormatter(this.regionValue);
+        //     var formatted;
+        //     console.log(this.regionValue);
+        //     // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
+        //     if(change !== null && change !== undefined) {
+        //         change.split('').forEach(digit => {
+        //             formatted = formatter.inputDigit(digit);   
+        //         });    
+        //         console.log(formatted);
+        //         // this.phoneForm.controls['phone'].patchValue(change);
+        //     }
+        // });
     }
 
     updateRegion(event: any) {
