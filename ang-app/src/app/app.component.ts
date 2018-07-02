@@ -49,7 +49,24 @@ export class AppComponent implements OnInit {
         });
     }
     
-    ngOnInit() {}
+    ngOnInit() {
+        this.phoneForm.controls['phone'].patchValue('yellow');
+        const phoneCtrl = this.phoneForm.controls['phone'];
+        const changes$ = phoneCtrl.valueChanges;
+        changes$.subscribe(change => {
+            var formatter = new AsYouTypeFormatter(this.regionValue);
+            var formatted;
+            console.log(this.regionValue);
+            // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
+            if(change !== null && change !== undefined) {
+                change.split('').forEach(digit => {
+                    formatted = formatter.inputDigit(digit);   
+                });    
+                console.log(formatted);
+                // this.phoneForm.controls['phone'].patchValue(change);
+            }
+        });
+    }
 
     updateRegion(event: any) {
         console.log(event.target.value);
@@ -83,18 +100,6 @@ export class AppComponent implements OnInit {
 
       if (phoneControl.value !== '') {
         try {
-            var formatter = new AsYouTypeFormatter(this.regionValue);
-            var formatted;
-            console.log(this.regionValue);
-            // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
-            if(phoneControl.value !== null && phoneControl !== undefined) {
-                phoneControl.value.split('').forEach(digit => {
-                    formatted = formatter.inputDigit(digit);   
-                });    
-                console.log(formatted);
-                this.phoneForm.controls['phone'].setValue(formatted);
-            }
-        
             //this.formatter.clear();
             const phoneUtil = PhoneNumberUtil.getInstance();
             const pNumber = phoneUtil.parseAndKeepRawInput(phoneControl.value, this.regionValue);
