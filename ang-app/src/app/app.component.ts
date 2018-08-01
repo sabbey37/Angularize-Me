@@ -12,6 +12,7 @@ import { PhoneValidator } from "./Validators";
 export class AppComponent implements OnInit {
     private phoneForm;
     public regionValue = 'US';
+    public phoneNumber = '';
 
     // @Output()
     // phoneChange = new EventEmitter<string>();
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
     constructor(@Inject(FormBuilder) fb: FormBuilder) {
         this.phoneForm = new FormGroup({
             country: new FormControl('US', Validators.required),
-            phone: new FormControl('', Validators.compose([
+            phone: new FormControl(this.phoneNumber, Validators.compose([
             Validators.required,
             this.validCountryPhone.bind(this)
             ]))
@@ -104,6 +105,20 @@ export class AppComponent implements OnInit {
             const phoneUtil = PhoneNumberUtil.getInstance();
             const pNumber = phoneUtil.parseAndKeepRawInput(phoneControl.value, this.regionValue);
             const isValidNumber = phoneUtil.isValidNumber(pNumber);
+
+            var formatter = new AsYouTypeFormatter(this.regionValue);
+            var formatted;
+
+            console.log(this.regionValue);
+            // this.phoneNumber = new AsYouType('US').input(phoneControl.value);
+            if(phoneControl.value !== null && phoneControl.value !== undefined) {
+                phoneControl.value.split('').forEach(digit => {
+                    formatted = formatter.inputDigit(digit);   
+                });    
+                console.log(formatted);
+                this.phoneNumber = '(404)519-0489'
+                // this.phoneForm.controls['phone'].patchValue(change);
+            }
 
           if (isValidNumber) {
               console.log('valid!');

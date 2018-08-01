@@ -28,6 +28,7 @@
     "google-libphonenumber": "^3.1.8",
     "hoek": "^5.0.3",
     "libphonenumber-js": "^1.2.15",
+    "parsejson": "0.0.3",
     "rxjs": "^5.5.2",
     "ssri": "^6.0.0",
     "zone.js": "^0.8.14"
