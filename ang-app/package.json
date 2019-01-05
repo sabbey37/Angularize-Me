@@ -33,6 +33,7 @@
     "randomatic": "^3.1.1",
     "rxjs": "^5.5.2",
     "ssri": "^6.0.0",
+    "webpack-dev-server": "^3.1.14",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
