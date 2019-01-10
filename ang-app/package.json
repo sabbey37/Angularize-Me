@@ -29,6 +29,7 @@
     "google-libphonenumber": "^3.1.8",
     "hoek": "^5.0.3",
     "libphonenumber-js": "^1.2.15",
+    "macaddress": "^0.2.9",
     "parsejson": "0.0.3",
     "randomatic": "^3.1.1",
     "rxjs": "^5.5.2",
